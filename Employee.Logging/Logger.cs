@@ -13,11 +13,13 @@ namespace Employee.Logging
         // code deosn't support multi-threaded aplication
         // private static Logger instance = null;
         // Eager loading
-        private static readonly Logger instance = new Logger();
+        // Lazy intialization with lazy keyword for > 4.0
+        private static readonly Lazy<Logger> instance = new Lazy<Logger>(()=> new Logger());
+        #region Below code is for < 4.0 framework for lazy initialization 
         //  private static readonly object obj = new object();
         // Property by which an instance can be created
         // As we are using property to cretae object this is called lazy initialization
-        // Below code is for < 4.0 framework for lazy initialization
+
         //private static Logger GetInstance
         //{
         //    get
@@ -36,11 +38,12 @@ namespace Employee.Logging
         //        return instance;
         //    }
         //}
+        #endregion
         private static Logger GetInstance
         {
             get
             {
-                return instance;
+                return instance.Value;
             }
         }
         // Restricted object creation 
