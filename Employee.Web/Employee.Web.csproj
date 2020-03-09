@@ -216,7 +216,12 @@
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Employee.Logging\Employee.Logging.csproj">
+      <Project>{C9035DEC-7A0B-496C-8062-701E8E28F947}</Project>
+      <Name>Employee.Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

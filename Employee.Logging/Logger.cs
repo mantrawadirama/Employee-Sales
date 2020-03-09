@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace Employee.Logging
 {
     //sealed class to avoid inheritence which also helps not to create more than 1 object
-    public sealed class Logger
+    public sealed class Logger: ILog
     {
         // This is Base version of Singleton.
         // code deosn't support multi-threaded aplication
@@ -39,7 +40,7 @@ namespace Employee.Logging
         //    }
         //}
         #endregion
-        private static Logger GetInstance
+        public static Logger GetInstance
         {
             get
             {
@@ -50,6 +51,21 @@ namespace Employee.Logging
         private Logger()
         {
 
+        }
+
+        public void LogException(string message)
+        {
+            string fileName = string.Format("{0}_{1}.log", "Exception", DateTime.Now.ToString("MM-dd-yyyy"));
+            string logFilepath = string.Format(@"{0}\{1}", AppDomain.CurrentDomain.BaseDirectory,fileName);
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("------------------------------------");
+            sb.AppendLine(DateTime.Now.ToString());
+            sb.AppendLine(message);
+            using (StreamWriter writer = new StreamWriter(logFilepath, true))
+            {
+                writer.Write(sb.ToString());
+                writer.Flush();
+            }            
         }
     }
 }
