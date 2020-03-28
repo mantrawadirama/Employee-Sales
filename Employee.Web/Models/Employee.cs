@@ -22,6 +22,8 @@ namespace Employee.Web.Models
         public decimal HourlyPay { get; set; }
         public decimal Bonus { get; set; }
         public int EmployeeTypeID { get; set; }
+        public Nullable<decimal> HouseAllowance { get; set; }
+        public Nullable<decimal> MedicalAllowance { get; set; }
     
         public virtual EmployeeType EmployeeType { get; set; }
     }

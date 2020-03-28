@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Employee.Web.BusinessLogic;
-using Employee.Web.Factory;
+using Employee.Web.Factory.FactoryMethod;
 using Employee.Web.Models;
 
 namespace Employee.Web.Controllers
@@ -50,7 +50,7 @@ namespace Employee.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,JobDescription,Number,Department,HourlyPay,Bonus,EmployeeTypeID")]   Employee.Web.Models.Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,JobDescription,Number,Department,HourlyPay,Bonus,EmployeeTypeID")] Employee.Web.Models.Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -66,11 +66,12 @@ namespace Employee.Web.Controllers
                 //    employee.HourlyPay = 12;
                 //    employee.Bonus = 5;
                 //}
-                EmployeeManagerFactory empFactory = new EmployeeManagerFactory();
-                IEmployeeManager empManager = empFactory.GetEmployeeManager(employee.EmployeeTypeID);
-                employee.Bonus = empManager.GetBonus();
-                employee.HourlyPay = empManager.GetHourlyPay();
+                BaseEmployeeFactory empFactory = new EmployeeManagerFactory().CreateFactory(employee);
+                //IEmployeeManager empManager = empFactory.GetEmployeeManager(employee.EmployeeTypeID);
+                //employee.Bonus = empManager.GetBonus();
+                //employee.HourlyPay = empManager.GetHourlyPay();
 
+                empFactory.ApplySalary();
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");

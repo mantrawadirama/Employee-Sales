@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Employee.Web.BusinessLogic
+﻿namespace Employee.Web.BusinessLogic
 {
     public class PermanentEmployeeManager : IEmployeeManager
     {
@@ -15,6 +10,10 @@ namespace Employee.Web.BusinessLogic
         public decimal GetHourlyPay()
         {
             return 8;
+        }
+        public decimal GetHouseAllowance()
+        {
+            return 150;
         }
     }
 }

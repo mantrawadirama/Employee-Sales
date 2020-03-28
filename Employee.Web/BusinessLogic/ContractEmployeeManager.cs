@@ -16,5 +16,9 @@ namespace Employee.Web.BusinessLogic
         {
             return 12;
         }
+        public decimal GetMedicalAllowance()
+        {
+            return 100;
+        }
     }
 }
