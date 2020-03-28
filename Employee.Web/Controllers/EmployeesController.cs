@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Employee.Web.BusinessLogic;
+using Employee.Web.Factory;
 using Employee.Web.Models;
 
 namespace Employee.Web.Controllers
@@ -54,16 +56,21 @@ namespace Employee.Web.Controllers
             {
                 //calcaulate bonus
                 // businees logic inside controller -- bad practice
-                if (employee.EmployeeTypeID ==1) // permanent
-                {
-                    employee.HourlyPay = 8;
-                    employee.Bonus = 10;
-                }
-                else if (employee.EmployeeTypeID == 2)
-                {
-                    employee.HourlyPay = 12;
-                    employee.Bonus = 5;
-                }
+                //if (employee.EmployeeTypeID ==1) // permanent
+                //{
+                //    employee.HourlyPay = 8;
+                //    employee.Bonus = 10;
+                //}
+                //else if (employee.EmployeeTypeID == 2)
+                //{
+                //    employee.HourlyPay = 12;
+                //    employee.Bonus = 5;
+                //}
+                EmployeeManagerFactory empFactory = new EmployeeManagerFactory();
+                IEmployeeManager empManager = empFactory.GetEmployeeManager(employee.EmployeeTypeID);
+                employee.Bonus = empManager.GetBonus();
+                employee.HourlyPay = empManager.GetHourlyPay();
+
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
