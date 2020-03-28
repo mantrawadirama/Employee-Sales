@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\akkap\source\Okta\Employee-Sales\Employee.Web\Models\EmployeeSalesModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\mantr\source\repos\DotNet\DesignPatterns\Employee-Sales\Employee.Web\Models\EmployeeSalesModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

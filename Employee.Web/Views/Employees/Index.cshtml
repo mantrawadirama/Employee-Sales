@@ -24,6 +24,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Department)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HourlyPay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bonus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeType.EmployeeType1)
+        </th>
         <th></th>
     </tr>
 
@@ -40,6 +49,15 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HourlyPay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bonus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeType.EmployeeType1)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

@@ -26,5 +26,6 @@ namespace Employee.Web.Models
         }
     
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
     }
 }
