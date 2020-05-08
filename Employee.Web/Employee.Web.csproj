@@ -128,9 +128,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BusinessLogic\ContractEmployeeManager.cs" />
+    <Compile Include="BusinessLogic\IEmployeeManager.cs" />
+    <Compile Include="BusinessLogic\PermanentEmployeeManager.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Factory\EmployeeManagerFactory.cs" />
+    <Compile Include="Factory\FactoryMethod\BaseEmployeeFactory.cs" />
+    <Compile Include="Factory\FactoryMethod\ContractEmployeeFactory.cs" />
+    <Compile Include="Factory\FactoryMethod\EmployeeManagerFactory.cs" />
+    <Compile Include="Factory\FactoryMethod\PermanentEmployeeFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Employee.Web.BusinessLogic;
+using Employee.Web.Factory.FactoryMethod;
 using Employee.Web.Models;
 
 namespace Employee.Web.Controllers
@@ -48,22 +50,28 @@ namespace Employee.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,JobDescription,Number,Department,HourlyPay,Bonus,EmployeeTypeID")]   Employee.Web.Models.Employee employee)
+        public ActionResult Create([Bind(Include = "Id,Name,JobDescription,Number,Department,HourlyPay,Bonus,EmployeeTypeID")] Employee.Web.Models.Employee employee)
         {
             if (ModelState.IsValid)
             {
                 //calcaulate bonus
                 // businees logic inside controller -- bad practice
-                if (employee.EmployeeTypeID ==1) // permanent
-                {
-                    employee.HourlyPay = 8;
-                    employee.Bonus = 10;
-                }
-                else if (employee.EmployeeTypeID == 2)
-                {
-                    employee.HourlyPay = 12;
-                    employee.Bonus = 5;
-                }
+                //if (employee.EmployeeTypeID ==1) // permanent
+                //{
+                //    employee.HourlyPay = 8;
+                //    employee.Bonus = 10;
+                //}
+                //else if (employee.EmployeeTypeID == 2)
+                //{
+                //    employee.HourlyPay = 12;
+                //    employee.Bonus = 5;
+                //}
+                BaseEmployeeFactory empFactory = new EmployeeManagerFactory().CreateFactory(employee);
+                //IEmployeeManager empManager = empFactory.GetEmployeeManager(employee.EmployeeTypeID);
+                //employee.Bonus = empManager.GetBonus();
+                //employee.HourlyPay = empManager.GetHourlyPay();
+
+                empFactory.ApplySalary();
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
